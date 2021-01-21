@@ -24,4 +24,14 @@ module.exports = {
       res.status(400).send(error)
     }
   },
+
+  async findAllSuppliers(req,res){
+    try {
+      const suppliersCollection = await Suppliers.findAll({});
+      res.status(200).send(suppliersCollection);
+    } catch (error) {
+      console.log(error)
+      res.status(400).send(error)
+    }
+  }
 }

@@ -23,6 +23,7 @@ module.exports=(app)=>{
 
 
     app.post('/api/suppliers/create',supplierController.createSuppliers)              // Create Supplier
+    app.get('/api/suppliers/findAll',supplierController.findAllSuppliers)              // Get All Supplier
 
 
 }
