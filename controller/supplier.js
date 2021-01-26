@@ -21,7 +21,7 @@ module.exports = {
       }
     } catch (error) {
       console.log(error)
-      res.status(400).send(error)
+      res.status(500).send(error)
     }
   },
 
@@ -31,7 +31,7 @@ module.exports = {
       res.status(200).send(suppliersCollection);
     } catch (error) {
       console.log(error)
-      res.status(400).send(error)
+      res.status(500).send(error)
     }
   }
 }

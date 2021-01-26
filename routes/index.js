@@ -2,6 +2,8 @@ const customerController = require('../controller/customers');
 const categoryController = require('../controller/category');
 const productController = require('../controller/product');
 const supplierController = require('../controller/supplier');
+const userContoller = require('../controller/user');
+const user = require('../controller/user');
 
 module.exports=(app)=>{
     app.get('/api',(req,res) => {
@@ -25,5 +27,5 @@ module.exports=(app)=>{
     app.post('/api/suppliers/create',supplierController.createSuppliers)              // Create Supplier
     app.get('/api/suppliers/findAll',supplierController.findAllSuppliers)              // Get All Supplier
 
-
+    app.post('/api/user/create',userContoller.createUser)                                             // user creation
 }

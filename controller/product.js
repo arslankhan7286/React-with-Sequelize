@@ -27,6 +27,7 @@ module.exports = {
             price: req.body.price,
             categoryID: req.body.categoryID,
             SupplierID: req.body.SupplierID,
+            userID: req.body.userID,
           })
           res.status(200).send(productCollection)
         } else {
@@ -38,7 +39,7 @@ module.exports = {
      
     } catch (error) {
       console.log(error)
-      res.status(400).send(error)
+      res.status(500).send(error)
     }
   },
 }

@@ -16,6 +16,10 @@ module.exports=(sequelize,DataTypes)=>{
             onDelete : "CASCADE",
             foreignKey : 'SupplierID'
         });
+        Products.belongsTo(models.Users,{
+            onDelete : "CASCADE",
+            foreignKey : 'userID'
+        });
     };
 
 
