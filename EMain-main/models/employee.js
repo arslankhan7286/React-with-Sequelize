@@ -8,15 +8,7 @@ module.exports=(sequelize,DataTypes)=>{
         contactNumber: DataTypes.STRING,
         education: DataTypes.STRING,
         notes: DataTypes.STRING,
-        userID : DataTypes.INTEGER
     });
 
-    Employees.associate = function (models) {
-        Employees.hasMany(models.Users, {
-          foreignKey: 'userID',
-          as: 'user_emp_ID'
-        });
-        
-      };
     return Employees;
 }

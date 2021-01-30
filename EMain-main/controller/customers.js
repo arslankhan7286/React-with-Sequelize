@@ -13,12 +13,11 @@ module.exports = {
         city: req.body.city,
         postalCode: req.body.postalCode,
         country: req.body.country,
-        userID : req.body.userID
       });
       res.status(200).send(customerCollection);
     } catch (error) {
       console.log(error);
-      res.status(500).send(error);
+      res.status(400).send(error);
     }
   },
 
@@ -30,7 +29,7 @@ module.exports = {
       res.status(200).send(customerCollection);
     } catch (error) {
       console.log(error);
-      res.status(500).send(error);
+      res.status(400).send(error);
     }
   },
 };

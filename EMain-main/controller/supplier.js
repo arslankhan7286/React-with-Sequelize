@@ -13,7 +13,6 @@ module.exports = {
         postalCode: req.body.postalCode,
         country: req.body.country,
         phoneNumber: req.body.phoneNumber,
-        userID:req.body.userID
       })
       if (suppliersCollection) {
         res.status(200).send(suppliersCollection)
@@ -22,7 +21,7 @@ module.exports = {
       }
     } catch (error) {
       console.log(error)
-      res.status(500).send(error)
+      res.status(400).send(error)
     }
   },
 
@@ -32,7 +31,7 @@ module.exports = {
       res.status(200).send(suppliersCollection);
     } catch (error) {
       console.log(error)
-      res.status(500).send(error)
+      res.status(400).send(error)
     }
   }
 }

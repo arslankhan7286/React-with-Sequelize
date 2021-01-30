@@ -9,20 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     postalCode: DataTypes.STRING,
     country: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    userID : DataTypes.INTEGER
   });
 
 
-  Suppliers.associate = function (models) {
-    Suppliers.hasMany(models.Products, {
-      foreignKey: 'SupplierID',
-      as: 'products'
+  Suppliers.associate = function(models) {
+    Suppliers.hasMany(models.Products,{
+        foreignKey : 'SupplierID',
+        as : 'products'
     });
-    Suppliers.belongsTo(models.Users, {
-      onDelete: "CASCADE",
-      foreignKey: 'userID'
-    });
-  };
+};
 
   return Suppliers
 }

@@ -8,16 +8,6 @@ module.exports=(sequelize,DataTypes)=>{
         city	: DataTypes.STRING,
         postalCode	: DataTypes.STRING,
         country: DataTypes.STRING,
-        userID : DataTypes.INTEGER
-
     });
-
-    Customers.associate = function (models) {
-        Customers.hasMany(models.Users, {
-          foreignKey: 'userID',
-          as: 'user_customer_ID'
-        });
-        
-      };
     return Customers;
 }
