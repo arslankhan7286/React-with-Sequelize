@@ -13,7 +13,7 @@ module.exports=(sequelize,DataTypes)=>{
     });
 
     Customers.associate = function (models) {
-        Customers.hasMany(models.Users, {
+        Customers.belongsTo(models.Users, {
           foreignKey: 'userID',
           as: 'user_customer_ID'
         });

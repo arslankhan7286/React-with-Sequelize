@@ -12,7 +12,7 @@ module.exports=(sequelize,DataTypes)=>{
     });
 
     Employees.associate = function (models) {
-        Employees.hasMany(models.Users, {
+        Employees.belongsTo(models.Users, {
           foreignKey: 'userID',
           as: 'user_emp_ID'
         });

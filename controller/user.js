@@ -37,6 +37,8 @@ module.exports = {
 
   // login api 
   async loginUser(req, res) {
+    console.log("Request", req.body);
+    console.log("Modle", Users)
     try {
       const userCollection = await Users.findOne({
         where: {
