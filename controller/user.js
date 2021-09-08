@@ -1,37 +1,56 @@
 // User Creation 
 const Users = require('../models').Users;
+const { auth_Schema } = require('../Validation/auth_Schema')
+
 
 module.exports = {
 
   // create New User
   async createUser(req, res) {
-
     try {
-      const alreadyExistCollection = await Users.findOne({
-        where: {
-          email: req.body.email
+      console.log("create")
+      const result = await auth_Schema.validateAsync(req.body)
+      console.log("result>>>>>>>>>>>>>>>>>>>>>>", result)
+      if (result) {
+        try {
+          const alreadyExistCollection = await Users.findOne({
+            where: {
+              email: result.email
+            }
+          })
+          if (alreadyExistCollection) {
+            res.status(400).send("Email Already Exists");
+            return;
+          } else {
+            const userCollection = await Users.create({
+              name: result.name,
+              email: result.email,
+              password: result.password,
+              address: result.address,
+              city: result.city,
+              postalCode: result.postalCode,
+              country: result.country,
+            });
+            res.status(200).send(userCollection);
+          }
+
+        } catch (error) {
+          if (error.isJoi === true) {
+            error.status = 422
+            console.log(error)
+          }
+
         }
-      })
-      if (alreadyExistCollection) {
-        res.status(400).send("Email Already Exists");
-        return;
-      } else {
-        const userCollection = await Users.create({
-          name: req.body.name,
-          email: req.body.email,
-          password: req.body.password,
-          address: req.body.address,
-          city: req.body.city,
-          postalCode: req.body.postalCode,
-          country: req.body.country,
-        });
-        res.status(200).send(userCollection);
       }
 
-    } catch (error) {
-      console.log(error)
-      res.status(500).send(error)
     }
+    catch (e) {
+      res.status(422).json({
+        message: "Error Occured",
+        error: e
+      })
+    }
+
   },
 
 
@@ -47,9 +66,9 @@ module.exports = {
       });
       if (userCollection) {
         console.log("Collection ", userCollection.password);
-        if(userCollection.password === req.body.password){
+        if (userCollection.password === req.body.password) {
           res.status(200).send(userCollection);
-        }else{
+        } else {
           res.status(400).send("Invalid Password");
         }
       } else {
