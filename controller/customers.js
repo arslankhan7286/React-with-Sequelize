@@ -2,7 +2,6 @@
 
 const Customer = require("../models").Customers;
 module.exports = {
-
   // to create a new Customer
   async createCustomer(req, res) {
     try {
@@ -13,7 +12,7 @@ module.exports = {
         city: req.body.city,
         postalCode: req.body.postalCode,
         country: req.body.country,
-        userID : req.body.userID
+        userID: req.body.userID,
       });
       res.status(200).send(customerCollection);
     } catch (error) {
@@ -22,9 +21,8 @@ module.exports = {
     }
   },
 
-
-  // find All customer 
-  async findAllCustomers(req,res){
+  // find All customer
+  async findAllCustomers(req, res) {
     try {
       const customerCollection = await Customer.findAll({});
       res.status(200).send(customerCollection);

@@ -1,34 +1,24 @@
-const customerController = require('../controller/customers');
-const categoryController = require('../controller/category');
-const productController = require('../controller/product');
-const supplierController = require('../controller/supplier');
-const userContoller = require('../controller/user');
-const employeeContoller = require('../controller/employee');
 
-module.exports=(app)=>{
-    app.get('/api',(req,res) => {
-        res.status(200).send({
-            data : "Welcome Node Sequlize API v1"
-        })
-    });
+// import all Controllers here
+const { Router } = require('express');
+const apiRouter = Router();
+const customerRouter = require('./customerRouter')
+const employeRouter = require('./employeRouter')
+const categoryRouter = require('./categoryRouter')
+const productRouter = require('./productRouter')
+const supplierRouter = require('./supplierRouter')
+const authRouter = require('./authRouter')
 
-
-    app.post('/api/customer/create',customerController.createCustomer);             // Create new customer
-    app.get('/api/customer/findAll', customerController.findAllCustomers)           // find All Customers 
-
-    app.post('/api/employee/create',employeeContoller.createEmployee);             // Create new Employee
-    app.get('/api/employee/findAll',employeeContoller.findAllEmployee);             // Create new Employee
-
-    app.post('/api/category/create',categoryController.createCategory)              // Create Category
-    app.get('/api/category/findAll',categoryController.findAllCategories)              // Get All Categories
+// Set Initial Router and Hit that Countroler at particular route
+apiRouter.use('/customer', customerRouter)
+apiRouter.use('/employe', employeRouter)
+apiRouter.use('/category', categoryRouter)
+apiRouter.use('/product', productRouter)
+apiRouter.use('/supplier', supplierRouter)
+apiRouter.use('/auth', authRouter)
 
 
-    app.post('/api/product/create',productController.createProduct)              // Create Product
-    app.get('/api/product/findAll',productController.findAllProducts)              // Create Product
 
-    app.post('/api/suppliers/create',supplierController.createSuppliers)              // Create Supplier
-    app.get('/api/suppliers/findAll',supplierController.findAllSuppliers)              // Get All Supplier
 
-    app.post('/api/user/create',userContoller.createUser)                                             // user creation
-    app.post('/api/user/login',userContoller.loginUser)                                             // user creation
-}
+
+module.exports = apiRouter
