@@ -1,15 +1,17 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const app = express();
-const apiRouter = require('./routes/index')
-app.use(express.Router())
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// require('./routes')(app);
-app.use('/api', apiRouter)
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-const PORT = 3456;
-app.listen(PORT, () => {
-    console.log(`Server is listening to port ${PORT}`)
-})
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
